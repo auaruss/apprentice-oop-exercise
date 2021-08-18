@@ -1,22 +1,21 @@
-import Character from '../character';
+import createCharacter from '../character';
 
-class Rogue extends Character {
-  constructor(name = '') {
-    super(name);
-    this.timesAttacked = 0;
-  }
+const createRogue = (name) => {
+  const rogue = createCharacter(name);
 
-  talk() { return super.talk().toLowerCase().replace('!', '.'); }
+  rogue.timesAttacked = 0;
 
-  attack() {
-    this.timesAttacked += 1;
-    if (this.isNthAttack(5)) this.health -= 5;
-    return (this.isNthAttack(5)) ? 1 : 5;
-  }
+  rogue.talk = () => createCharacter(rogue.name).talk().toLowerCase().replace('!', '.');
 
-  isNthAttack(n) {
-    return (this.timesAttacked % n) === 0;
-  }
-}
+  rogue.attack = () => {
+    rogue.timesAttacked += 1;
+    if (rogue.isNthAttack(5)) rogue.health -= 5;
+    return (rogue.isNthAttack(5)) ? 1 : 5;
+  };
 
-export default Rogue;
+  rogue.isNthAttack = (n) => (rogue.timesAttacked % n) === 0;
+
+  return rogue;
+};
+
+export default createRogue;

@@ -1,9 +1,9 @@
-import Rogue from '.';
+import createRogue from '.';
 
 describe('Rogue', () => {
   describe('#talk', () => {
     it('quitely greets you and whispers their name', () => {
-      const character = new Rogue('Balthazar');
+      const character = createRogue('Balthazar');
       expect(character.talk()).toBe('hello. my name is balthazar.');
     });
   });
@@ -11,7 +11,7 @@ describe('Rogue', () => {
   describe('#attack', () => {
     describe('by default when attacked', () => {
       it('does not take damage', () => {
-        const character = new Rogue('Balthazar');
+        const character = createRogue('Balthazar');
         character.attack();
         character.attack();
         character.attack();
@@ -20,14 +20,14 @@ describe('Rogue', () => {
       });
 
       it('returns 5 points damage', () => {
-        const character = new Rogue('Balthazar');
+        const character = createRogue('Balthazar');
         const counterDamage = character.attack();
         expect(counterDamage).toBe(5);
       });
     });
     describe('every 5th time attacked', () => {
       it('takes 5 points damage', () => {
-        const character = new Rogue('Balthazar');
+        const character = createRogue('Balthazar');
         character.attack();
         character.attack();
         character.attack();
@@ -44,7 +44,7 @@ describe('Rogue', () => {
       });
 
       it('returns standard damage', () => {
-        const character = new Rogue('Balthazar');
+        const character = createRogue('Balthazar');
         character.attack();
         character.attack();
         character.attack();
